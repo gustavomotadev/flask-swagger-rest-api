@@ -198,7 +198,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def editar_estilo_por_id(cls, id, nome):
-        COMANDO_SQL = r'UPDATE OR IGNORE Estilo SET Nome = :Nome WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Estilo SET Nome = :Nome WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id, 'Nome': nome})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -208,7 +208,7 @@ class RepositorioDeArte(object):
     
     @classmethod
     def editar_estilo_por_nome(cls, nome_antigo, novo_nome):
-        COMANDO_SQL = r'UPDATE OR IGNORE Estilo SET Nome = :NovoNome WHERE Nome = :NomeAntigo LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Estilo SET Nome = :NovoNome WHERE Nome = :NomeAntigo;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'NomeAntigo': nome_antigo, 'NovoNome': novo_nome})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -218,7 +218,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def editar_autor_por_id(cls, id, nome, ano_nascimento, ano_falecimento, pais_origem, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET Nome=:Nome,AnoNascimento=:AnoNascimento,AnoFalecimento=:AnoFalecimento,PaisOrigem=:PaisOrigem,UrlImagem=:UrlImagem WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET Nome=:Nome,AnoNascimento=:AnoNascimento,AnoFalecimento=:AnoFalecimento,PaisOrigem=:PaisOrigem,UrlImagem=:UrlImagem WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id, 'Nome': nome, 'AnoNascimento': ano_nascimento, 'AnoFalecimento': ano_falecimento, 'PaisOrigem': pais_origem, 'UrlImagem': url_imagem})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -228,7 +228,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def editar_autor_por_nome(cls, nome_antigo, novo_nome, ano_nascimento, ano_falecimento, pais_origem, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET Nome=:NovoNome,AnoNascimento=:AnoNascimento,AnoFalecimento=:AnoFalecimento,PaisOrigem=:PaisOrigem,UrlImagem=:UrlImagem WHERE Nome = :NomeAntigo LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET Nome=:NovoNome,AnoNascimento=:AnoNascimento,AnoFalecimento=:AnoFalecimento,PaisOrigem=:PaisOrigem,UrlImagem=:UrlImagem WHERE Nome = :NomeAntigo;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id, 'NomeAntigo': nome_antigo, 'NovoNome': novo_nome, 'AnoNascimento': ano_nascimento, 'AnoFalecimento': ano_falecimento, 'PaisOrigem': pais_origem, 'UrlImagem': url_imagem})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -238,7 +238,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def editar_obra_por_id(cls, id, titulo, autor, ano, estilo, material, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Obra SET Titulo=:Titulo,Autor=:Autor,Ano=:Ano,Estilo=:Estilo,Material=:Material,UrlImagem=:UrlImagem WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Obra SET Titulo=:Titulo,Autor=:Autor,Ano=:Ano,Estilo=:Estilo,Material=:Material,UrlImagem=:UrlImagem WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         try:
             conexao.execute(COMANDO_SQL, {'Id': id, 'Titulo': titulo, 'Autor': autor, 'Ano': ano, 'Estilo': estilo, 'Material': material, 'UrlImagem': url_imagem})
@@ -251,7 +251,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def remover_estilo_por_id(cls, id):
-        COMANDO_SQL = r'DELETE FROM Estilo WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'DELETE FROM Estilo WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         try:
             conexao.execute(COMANDO_SQL, {'Id': id})
@@ -264,7 +264,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def remover_estilo_por_nome(cls, nome):
-        COMANDO_SQL = r'DELETE FROM Estilo WHERE Nome = :Nome LIMIT 1;'
+        COMANDO_SQL = r'DELETE FROM Estilo WHERE Nome = :Nome;'
         (banco, conexao) = cls.conectar()
         try:
             conexao.execute(COMANDO_SQL, {'Nome': nome})
@@ -277,7 +277,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def remover_autor_por_id(cls, id):
-        COMANDO_SQL = r'DELETE FROM Autor WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'DELETE FROM Autor WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         try:
             conexao.execute(COMANDO_SQL, {'Id': id})
@@ -290,7 +290,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def remover_autor_por_nome(cls, nome):
-        COMANDO_SQL = r'DELETE FROM Autor WHERE Nome = :Nome LIMIT 1;'
+        COMANDO_SQL = r'DELETE FROM Autor WHERE Nome = :Nome;'
         (banco, conexao) = cls.conectar()
         try:
             conexao.execute(COMANDO_SQL, {'Nome': nome})
@@ -303,7 +303,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def remover_obra_por_id(cls, id):
-        COMANDO_SQL = r'DELETE FROM Obra WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'DELETE FROM Obra WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -313,7 +313,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def alterar_imagem_autor_por_id(cls, id, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET UrlImagem=:UrlImagem WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET UrlImagem=:UrlImagem WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id, 'UrlImagem': url_imagem})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -323,7 +323,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def alterar_imagem_autor_por_nome(cls, nome, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET UrlImagem=:UrlImagem WHERE Nome = :Nome LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Autor SET UrlImagem=:UrlImagem WHERE Nome = :Nome;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Nome': nome, 'UrlImagem': url_imagem})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
@@ -333,7 +333,7 @@ class RepositorioDeArte(object):
 
     @classmethod
     def alterar_imagem_obra_por_id(cls, id, url_imagem):
-        COMANDO_SQL = r'UPDATE OR IGNORE Obra SET UrlImagem=:UrlImagem WHERE Id = :Id LIMIT 1;'
+        COMANDO_SQL = r'UPDATE OR IGNORE Obra SET UrlImagem=:UrlImagem WHERE Id = :Id;'
         (banco, conexao) = cls.conectar()
         conexao.execute(COMANDO_SQL, {'Id': id, 'UrlImagem': url_imagem})
         resultado = conexao.execute(cls.LINHAS_AFETADAS_SQL)
